@@ -57,9 +57,10 @@ public class RETC_006_LoginTests {
 	}
 	@Test
 	public void validLoginTest() throws InterruptedException {
+		Thread.sleep(2000);
 		loginPOM.linkSelect();
-		screenShot.captureScreenShot("First");
-		Thread.sleep(1000);
+		screenShot.captureScreenShot("Log In Screen displayed");
+		Thread.sleep(2000);
 		String ExpectedLoginPage= "My Profile";
 		String loginPage=driver.findElement(By.xpath("//div[@class='col-md-12']/h2")).getText();
 		String ActualLoginPage=loginPage;
@@ -68,20 +69,21 @@ public class RETC_006_LoginTests {
 		Thread.sleep(1000);
 		loginPOM.sendUserName("chetna");
 		loginPOM.sendPassword("hello@4321");
+		screenShot.captureScreenShot("Entering Credentials");
 		loginPOM.clickLoginBtn(); 
 		String ExpectedProfilePage= "My Profile";
 		String profilePage=driver.findElement(By.xpath("//div[@class='col-md-12']/h2")).getText();
 		String ActualProfilePage=profilePage;
 		Thread.sleep(2000);
 		assertEquals(ActualProfilePage, ExpectedProfilePage);
-		screenShot.captureScreenShot("Second");
+		screenShot.captureScreenShot("My Profile Page is displayed");
 		loginPOM.linkMouseHover();
 		String ExpectedLogInScreen= "Log In";
 		String logInPage=driver.findElement(By.linkText("Log In")).getText();
 		String ActualLoginScreen=logInPage;
 		Thread.sleep(2000);
 		assertEquals(ActualLoginScreen, ExpectedLogInScreen);
-		screenShot.captureScreenShot("Third");
+		screenShot.captureScreenShot("Back to LogIn screen after Logout");
 		
 	}
 }

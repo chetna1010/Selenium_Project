@@ -62,36 +62,42 @@ public class RETC_010_ContactUsForm {
 	}
 	@Test
 	public void validSearchButtonTest() throws AWTException, InterruptedException {
-		wait = new WebDriverWait(driver, 180); 
+		
 		loginPOM1.linkSelect();
-		screenShot.captureScreenShot("one");
+		screenShot.captureScreenShot("Log In Screen displayed");
+		
 		loginPOM1.sendUserName("chetna");
 		loginPOM1.sendPassword("hello@4321");
+		screenShot.captureScreenShot("Entering Credentials");
 		loginPOM1.clickLoginBtn(); 
-		screenShot.captureScreenShot("two");
-		Thread.sleep(1000);
+		
+		Thread.sleep(3000);
 		Robot robot = new Robot(); 
 		Thread.sleep(4000); 
 		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
 		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+		screenShot.captureScreenShot("Page down");
 		Thread.sleep(4000); 
 		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
 		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
 		Thread.sleep(4000);
 		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
 		Thread.sleep(4000); 
+		screenShot.captureScreenShot("Bottom of the page");
+		
 		loginPOM1.contactUsButtonSelect();
+		screenShot.captureScreenShot("Contact Form displayed");
 		loginPOM1.yourNameTextBOx("chetna");
 		loginPOM1.yourEmailTextBOx("chetna.gupta@in.ibm.com");
 		loginPOM1.yourSubjectTextBox("apartments");
+		screenShot.captureScreenShot("Fill up the details");
 		loginPOM1.yourMessageTextBox("looking for an apartments");
-		
-		Thread.sleep(1000);
-		
-		screenShot.captureScreenShot("three");
-		
+		screenShot.captureScreenShot("Fill up Message");
 		loginPOM1.SendBtn();
-		Thread.sleep(1000);
+		Thread.sleep(3000); 
+		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+		Thread.sleep(2000); 
+		screenShot.captureScreenShot("Actual Result");
 		String result=driver.findElement(By.xpath("//*[@class='wpcf7-response-output wpcf7-display-none wpcf7-mail-sent-ng']")).getText();
 		String Expected ="Thank you for your message. It has been sent.";
 		String Actual =  result;		

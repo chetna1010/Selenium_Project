@@ -96,35 +96,50 @@ public class ApartmentTab_Send {
 	}
 
 
-	public void apartmentTabOptions() throws AWTException, InterruptedException 
+	public void apartmentTab() throws InterruptedException 
 	{
 		Actions builder = new Actions(driver);
 		builder.moveToElement(apartment).build().perform();
-
-		//String CB = driver.findElement(By.xpath("//a[@href='http://realestatem1.upskills.in/region/central-bangalore-apartments/' and @data-new_object_id='24']")).getText();
+		Thread.sleep(2000);
+	}
+	
+	public void apartmentTaboptions() throws InterruptedException 
+	{
 		boolean CB = driver.findElement(By.xpath("//a[@href='http://realestatem1.upskills.in/region/central-bangalore-apartments/' and @data-new_object_id='24']")).isDisplayed();
-		System.out.println("First Options is :"+ CB);
+		System.out.println("Central Bangalore is Present :"+ CB);
 		boolean EB = driver.findElement(By.xpath("//a[@href='http://realestatem1.upskills.in/region/east-bangalore-apartments/' and @data-new_object_id='30']")).isDisplayed();
-		System.out.println("Second Options is :"+EB);
+		System.out.println("East Bangalore is Present :"+EB);
 		boolean NB = driver.findElement(By.xpath("//a[@href='http://realestatem1.upskills.in/region/north-bangalore-apartments/' and @data-new_object_id='22']")).isDisplayed();
-		System.out.println("Third Options is :"+NB);
+		System.out.println("North Bangalore is Present :"+NB);
 		boolean SB = driver.findElement(By.xpath("//a[@href='http://realestatem1.upskills.in/region/south-bangalore-apartments/' and @data-new_object_id='28']")).isDisplayed();
-		System.out.println("Forth Options is :"+SB);
+		System.out.println("South Bangalore is Present :"+SB);
 		boolean WB = driver.findElement(By.xpath("//a[@href='http://realestatem1.upskills.in/region/west-bangalore-apartments/' and @data-new_object_id='27']")).isDisplayed();
-		System.out.println("Fifth Options is :"+WB);
+		System.out.println("West Bangalore is Present :"+WB);
+
 		this.navigation.click();
+		Thread.sleep(2000);
+		
+	}
+	public void donecQuisSearching() throws  InterruptedException 
+	{	Thread.sleep(4000);
 		if(driver.findElement(By.linkText("Prestige")).isDisplayed())
 		{
-
+			
 			this.navigation.click();
-			System.out.println("donecQuis is diplayed");
-			this.donecQuis.click();
-
 		}
 		else 
 		{
 			System.out.println("Donec Quis is not found");
 		}
+		
+	}
+	public void donecQuisSelect() throws  InterruptedException 
+	{
+	Thread.sleep(2000);
+	this.donecQuis.click();
+	}
+	public void donecQuisOverviewTest() throws AWTException, InterruptedException 
+	{
 		Robot robot = new Robot(); 
         Thread.sleep(2000); 
         robot.keyPress(KeyEvent.VK_PAGE_DOWN); 
@@ -133,8 +148,6 @@ public class ApartmentTab_Send {
 		System.out.println("Donec Quis Overview is displayed :"+donecQuis_Overview);
 		boolean donecQuis_Details = driver.findElement(By.xpath("//h3[contains(text(),'Donec quis - Details')]")).isDisplayed();
 		System.out.println("Donec Quis Details are present :"+donecQuis_Details);
-		
-  
 		
 	}
 
@@ -169,6 +182,7 @@ public class ApartmentTab_Send {
 		
 	}
 }
+
 
 
 

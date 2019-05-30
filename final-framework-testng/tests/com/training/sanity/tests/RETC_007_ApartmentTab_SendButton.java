@@ -3,6 +3,8 @@ package com.training.sanity.tests;
 import static org.testng.Assert.assertEquals;
 
 import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -58,20 +60,39 @@ public class RETC_007_ApartmentTab_SendButton {
 	}
 	@Test
 	public void validSendButtonTest() throws AWTException, InterruptedException {
+//		Thread.sleep(1000);
 		sendPOM.linkSelect();
+		screenShot.captureScreenShot("Log In Screen displayed");
 		sendPOM.sendUserName("chetna");
 		sendPOM.sendPassword("hello@4321");
-		screenShot.captureScreenShot("First");
+		screenShot.captureScreenShot("Entering Credentials");
+		
 		sendPOM.clickLoginBtn(); 
-		screenShot.captureScreenShot("Second");
-		sendPOM.apartmentTabOptions();
-		screenShot.captureScreenShot("Third");
+		Thread.sleep(3000);
+		screenShot.captureScreenShot("Profile Screen displayed");
+		sendPOM.apartmentTab();
+		screenShot.captureScreenShot("Mouse hover on Apartment Option");
+		sendPOM.apartmentTaboptions();
+		screenShot.captureScreenShot("All Apartment Tab options are present");
+		sendPOM.donecQuisSearching();
+		screenShot.captureScreenShot("DoneC Quis is present");
+		sendPOM.donecQuisSelect();
+		
+		sendPOM.donecQuisOverviewTest();
+		screenShot.captureScreenShot("select arrow button again");
 		sendPOM.your_Name("chetna");
 		sendPOM.your_Email("chetnagupta00@gmail.com");
 		sendPOM.your_Subject("apartment");
+		screenShot.captureScreenShot("Fill up the details");
 		sendPOM.sendMessage("looking for an apartments");
-		screenShot.captureScreenShot("Forth");
+		screenShot.captureScreenShot("fill up the message ");
 		sendPOM.SendLoginBtn();
+		Thread.sleep(3000); 
+		Robot robot = new Robot(); 
+		
+		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+		Thread.sleep(2000); 
+		screenShot.captureScreenShot("Actual Result");
 		
 		String element= driver.findElement(By.xpath("//*[@class='wpcf7-response-output wpcf7-display-none wpcf7-mail-sent-ng']")).getText();
 		
@@ -80,7 +101,7 @@ public class RETC_007_ApartmentTab_SendButton {
 		
 		assertEquals(Actual,Expected);
 		
-		screenShot.captureScreenShot("Fifth");
+	
 		
 		
 	}

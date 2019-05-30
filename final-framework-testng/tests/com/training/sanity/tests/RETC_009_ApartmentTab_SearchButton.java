@@ -59,33 +59,38 @@ public class RETC_009_ApartmentTab_SearchButton {
 	}
 	@Test
 	public void validSearchButtonTest() throws AWTException, InterruptedException {
-		wait = new WebDriverWait(driver, 180); 
+		
 		searchPOM.linkSelect();
-		screenShot.captureScreenShot("one");
+		screenShot.captureScreenShot("Log In Screen displayed");
+		
 		searchPOM.sendUserName("chetna");
 		searchPOM.sendPassword("hello@4321");
+		screenShot.captureScreenShot("Entering Credentials");
 		searchPOM.clickLoginBtn(); 
-		screenShot.captureScreenShot("two");
-		Thread.sleep(2000);
+		
+		Thread.sleep(3000);
 		searchPOM.apartmentSelectTab();
+		screenShot.captureScreenShot("Map is getting displayed ");
 		Thread.sleep(7000);
 		String yourMap = driver.findElement(By.linkText("Nullam hendrerit Apartments")).getText();
 		String Expected="Nullam hendrerit Apartments";
 		String Actual=yourMap;
 		assertEquals(Actual, Expected);
-		screenShot.captureScreenShot("three");
+		screenShot.captureScreenShot("Find Your Home screen displayed ");
 		Thread.sleep(5000);
 		searchPOM.your_Address("Electronic City, Bengaluru, Karnataka, India");
 		searchPOM.dropdownSelect1();
 		searchPOM.selectOption();
 		searchPOM.Region();
-		screenShot.captureScreenShot("four");
+		screenShot.captureScreenShot("Fill up the details");
 		searchPOM.SearchButtonClick();
+		Thread.sleep(2000);
+		screenShot.captureScreenShot("Nothing Found");
 		String result=driver.findElement(By.xpath("//*[@class='no-results not-found']/header[@class='page-header']/h1[@class='page-title']")).getText();
 		String Expected1 ="Records are Matching";
 		String Actual1 =  result;		
 		assertEquals(Actual1, Expected1);	
-		screenShot.captureScreenShot("Fifth");
+		
 		
 		
 		

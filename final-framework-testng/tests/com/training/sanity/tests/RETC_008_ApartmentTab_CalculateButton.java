@@ -58,33 +58,47 @@ public class RETC_008_ApartmentTab_CalculateButton {
 	@Test
 	public void validCaculateButtonTest() throws AWTException, InterruptedException {
 		calculatePOM.linkSelect();
+		screenShot.captureScreenShot("Log In Screen displayed");
 		calculatePOM.sendUserName("chetna");
 		calculatePOM.sendPassword("hello@4321");
-		screenShot.captureScreenShot("First");
+		screenShot.captureScreenShot("Entering Credentials");
+		
 		calculatePOM.clickLoginBtn(); 
-		screenShot.captureScreenShot("Second");
-		calculatePOM.apartmentTabOptions();
-		screenShot.captureScreenShot("Third");
+		Thread.sleep(3000);
+		screenShot.captureScreenShot("Profile Screen displayed");
+		calculatePOM.apartmentTab();
+		screenShot.captureScreenShot("Mouse hover on Apartment Option");
+		calculatePOM.apartmentTaboptions();
+		screenShot.captureScreenShot("All Apartment Tab options are present");
+		calculatePOM.donecQuisSearching();
+		screenShot.captureScreenShot("DoneC Quis is present");
+		calculatePOM.donecQuisSelect();
+		
+		calculatePOM.donecQuisOverviewTest();
+		screenShot.captureScreenShot("select arrow button again");
+		
 		calculatePOM.salesPriceCalculate("400000");
-		screenShot.captureScreenShot("Forth");
+	
 		calculatePOM.donwPaymenetCalculate("20000");
-		screenShot.captureScreenShot("Fifth");
+		screenShot.captureScreenShot("Fill up the details for sales price and down payment");
 		calculatePOM.loanTermClass("20");
-		screenShot.captureScreenShot("Sixth");
+		screenShot.captureScreenShot("Fill up the details");
 		calculatePOM.interestRateCalulator("7.25");
-		screenShot.captureScreenShot("Seven");
+		screenShot.captureScreenShot("Fill up InterestRate");
 		calculatePOM.calculateBtn();
 		String Expected ="Monthly Payment: 3003.43 Rs.";
 		Robot robot = new Robot(); 
 		Thread.sleep(2000); 
 		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+
 		String CB1 = driver.findElement(By.xpath("//div[@class='calc-output-container']/div[contains(text(),'Monthly Payment')]")).getText();
 		Thread.sleep(3000);
 		String Actual = CB1;
 		System.out.println(Actual);
+		
 		Thread.sleep(1000);
 		assertEquals(Actual, Expected);
-		screenShot.captureScreenShot("Eight");
+		screenShot.captureScreenShot("Actual result");
 		
 		
 	}
