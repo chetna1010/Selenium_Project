@@ -1,43 +1,46 @@
 package com.training.sanity.tests;
-
 import static org.testng.Assert.assertEquals;
-
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
-
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import com.training.generics.ScreenShot;
-import com.training.pom.ApartmentTab_Send;
+import com.training.pom.ApartmentTab_SearchButton;
+import com.training.pom.ContactUsForm;
 import com.training.pom.LoginPOM;
+import com.training.pom.PlotsTests;
+import com.training.pom.VillasTest;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class RETC_007_ApartmentTab_SendButton {
+
+public class RETC_037_PlotsTests {
 
 
 	private WebDriver driver;
 	private String baseUrl;
-	private LoginPOM loginPOM;
-	private ApartmentTab_Send sendPOM;
+	private VillasTest villasPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
 	private WebDriverWait wait;
-
-
+	private LoginPOM loginPOM;
+	private ContactUsForm contactPOM;
+	private PlotsTests plotsPOM;
+	private ApartmentTab_SearchButton searchPOM;
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws IOException {
 		properties = new Properties();
@@ -49,7 +52,10 @@ public class RETC_007_ApartmentTab_SendButton {
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		loginPOM = new LoginPOM(driver); 
-		sendPOM = new ApartmentTab_Send(driver); 
+		villasPOM = new VillasTest(driver); 
+		contactPOM = new ContactUsForm(driver); 
+		searchPOM = new ApartmentTab_SearchButton(driver); 
+		plotsPOM = new PlotsTests(driver); 
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
@@ -61,9 +67,9 @@ public class RETC_007_ApartmentTab_SendButton {
 		Thread.sleep(1000);
 		driver.quit();
 	}
-	
+
 	@Test
-	public void apartmentSearchButtonTest() throws AWTException, InterruptedException {
+	public void plotsOptionTest() throws AWTException, InterruptedException {
 		wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.loginRegisterVisibility())); // launch the Application
 		loginPOM.linkSelect();
@@ -75,36 +81,61 @@ public class RETC_007_ApartmentTab_SendButton {
 		loginPOM.clickLoginBtn(); 
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.myProfileClass())); 
 		screenShot.captureScreenShot("Profile Screen displayed");
-		sendPOM.apartmentTab();
-		screenShot.captureScreenShot("Mouse hover on Apartment Option");
-		sendPOM.apartmentTaboptions();
-		screenShot.captureScreenShot("All Apartment Tab options are present");
-		sendPOM.donecQuisSearching();
-		screenShot.captureScreenShot("DoneC Quis is present");
-		sendPOM.donecQuisSelect();
-		sendPOM.donecQuisOverviewTest();
-		screenShot.captureScreenShot("select arrow button again");
-		sendPOM.your_Name("chetna");
-		sendPOM.your_Email("chetna.gupta@in.ibm.com");
-		sendPOM.your_Subject("apartment");
+		plotsPOM.plotsSelectTab();
+		screenShot.captureScreenShot("Plots tab selected");
+		searchPOM.your_Address("Electronic City, Bengaluru, Karnataka, India");
+		searchPOM.dropdownSelect1();
+		searchPOM.selectOption();
+		searchPOM.Region();
 		screenShot.captureScreenShot("Fill up the details");
-		sendPOM.sendMessage("looking for an apartments");
-		screenShot.captureScreenShot("fill up the message ");
-		sendPOM.SendLoginBtn();
+		searchPOM.SearchButtonClick();
+		
+		Thread.sleep(5000);
+		villasPOM.searchValueClass("Nullam hendrerit apartment");
+		screenShot.captureScreenShot("Entered search criteria");
+		Thread.sleep(4000);
+		villasPOM.iconClickClass();
+		Thread.sleep(5000);
+		ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+		driver.switchTo().window(tabs.get(1));
+		JavascriptExecutor jse1 = (JavascriptExecutor) driver;
+		jse1.executeScript("window.scrollBy(0,7500)");
+		screenShot.captureScreenShot("select the contact option");
+		contactPOM.contactUsButtonSelect();
+		contactPOM.yourNameTextBOx("selenium");
+		contactPOM.yourEmailTextBOx("selenium@gmail.com");
+		contactPOM.yourSubjectTextBox("apartment");
+		screenShot.captureScreenShot("Fill up the details");
+		contactPOM.yourMessageTextBox("looking for an apartments");
+		screenShot.captureScreenShot("Fill up Message");
+		contactPOM.SendBtn();
 		Thread.sleep(3000); 
 		Robot robot = new Robot(); 
 		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
-		Thread.sleep(4000); 
+		Thread.sleep(2000); 
 		screenShot.captureScreenShot("Actual Result");
-		String element= driver.findElement(By.xpath("//*[@class='wpcf7-response-output wpcf7-display-none wpcf7-mail-sent-ng']")).getText();
-		String Expected="Thank you for your message. It has been sent";
-		String Actual = element;
-		assertEquals(Actual,Expected);
+		String result=driver.findElement(By.xpath("//*[@class='wpcf7-response-output wpcf7-display-none wpcf7-mail-sent-ng']")).getText();
+		String Expected ="Thank you for your message. It has been sent.";
+		String Actual =  result;		
+		assertEquals(Actual, Expected);	
+		screenShot.captureScreenShot("Fifth");
 	}
-	
-	
-	 
+
+
+
 } 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,5 +1,4 @@
 package com.training.sanity.tests;
-
 import static org.testng.Assert.assertEquals;
 
 import java.awt.AWTException;
@@ -21,6 +20,7 @@ import com.training.generics.ScreenShot;
 
 
 import com.training.pom.ApartmentTab_SearchButton;
+import com.training.pom.LoginPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
@@ -32,6 +32,7 @@ public class RETC_009_ApartmentTab_SearchButton {
 	private static Properties properties;
 	private ScreenShot screenShot;
 	private WebDriverWait wait;
+	private LoginPOM loginPOM;
 
 
 	@BeforeClass
@@ -44,12 +45,12 @@ public class RETC_009_ApartmentTab_SearchButton {
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
+		loginPOM = new LoginPOM(driver); 
 		searchPOM = new ApartmentTab_SearchButton(driver); 
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
 		driver.get(baseUrl);
-
 	}
 
 	@AfterMethod
@@ -57,27 +58,29 @@ public class RETC_009_ApartmentTab_SearchButton {
 		Thread.sleep(1000);
 		driver.quit();
 	}
+	
 	@Test
-	public void validSearchButtonTest() throws AWTException, InterruptedException {
-		
-		searchPOM.linkSelect();
+	public void apartmentSearchButtonTest() throws AWTException, InterruptedException {	
+		wait = new WebDriverWait(driver, 120);
+		wait.until(ExpectedConditions.visibilityOf(loginPOM.loginRegisterVisibility())); // launch the Application
+		loginPOM.linkSelect();
 		screenShot.captureScreenShot("Log In Screen displayed");
-		
-		searchPOM.sendUserName("chetna");
-		searchPOM.sendPassword("hello@4321");
+		wait.until(ExpectedConditions.visibilityOf(loginPOM.userNameVisibility()));
+		loginPOM.sendUserName("chetna");
+		loginPOM.sendPassword("hello@4321");
 		screenShot.captureScreenShot("Entering Credentials");
-		searchPOM.clickLoginBtn(); 
-		
-		Thread.sleep(3000);
+		loginPOM.clickLoginBtn(); 
+		wait.until(ExpectedConditions.visibilityOf(loginPOM.myProfileClass())); 
+		screenShot.captureScreenShot("Profile Screen displayed");
 		searchPOM.apartmentSelectTab();
 		screenShot.captureScreenShot("Map is getting displayed ");
 		Thread.sleep(7000);
-		String yourMap = driver.findElement(By.linkText("Nullam hendrerit Apartments")).getText();
-		String Expected="Nullam hendrerit Apartments";
+		String yourMap = driver.findElement(By.linkText("Donec quis")).getText();
+		String Expected="Donec quis";
 		String Actual=yourMap;
 		assertEquals(Actual, Expected);
 		screenShot.captureScreenShot("Find Your Home screen displayed ");
-		Thread.sleep(5000);
+		Thread.sleep(1000);
 		searchPOM.your_Address("Electronic City, Bengaluru, Karnataka, India");
 		searchPOM.dropdownSelect1();
 		searchPOM.selectOption();
@@ -90,9 +93,6 @@ public class RETC_009_ApartmentTab_SearchButton {
 		String Expected1 ="Records are Matching";
 		String Actual1 =  result;		
 		assertEquals(Actual1, Expected1);	
-		
-		
-		
 		
 	}
 	

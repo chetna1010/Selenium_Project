@@ -1,39 +1,39 @@
 package com.training.sanity.tests;
 import static org.testng.Assert.assertEquals;
-
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
-
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import com.training.generics.ScreenShot;
-import com.training.pom.ApartmentTab_Send;
+import com.training.pom.AddPost_CreatedCategory;
+import com.training.pom.BlogSection_ViewPostLink;
 import com.training.pom.LoginPOM;
-import com.training.pom.ApartmentTab_CalculateButton;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class RETC_008_ApartmentTab_CalculateButton {
+public class RETC_040_BlogSection_ViewPostLink {
 
 	private WebDriver driver;
 	private String baseUrl;
-	private ApartmentTab_CalculateButton calculatePOM;
-	private LoginPOM loginPOM;
+	private AddPost_CreatedCategory addPostPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
 	private WebDriverWait wait;
-	private ApartmentTab_Send sendPOM;
+	private LoginPOM loginPOM;
+	private BlogSection_ViewPostLink blogSectionPOM;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws IOException {
@@ -46,8 +46,8 @@ public class RETC_008_ApartmentTab_CalculateButton {
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		loginPOM = new LoginPOM(driver); 
-		calculatePOM = new ApartmentTab_CalculateButton(driver); 
-		sendPOM = new ApartmentTab_Send(driver); 
+		addPostPOM = new AddPost_CreatedCategory(driver); 
+		blogSectionPOM = new BlogSection_ViewPostLink(driver); 
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
@@ -57,57 +57,68 @@ public class RETC_008_ApartmentTab_CalculateButton {
 	@AfterMethod
 	public void tearDown() throws Exception {
 		Thread.sleep(1000);
-		driver.quit();
+		//driver.quit();
 	}
-	
+
 	@Test
-	public void apartmentSearchButtonTest() throws AWTException, InterruptedException {
+	public void addPostTest() throws AWTException, InterruptedException {
 		wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.loginRegisterVisibility())); // launch the Application
 		loginPOM.linkSelect();
 		screenShot.captureScreenShot("Log In Screen displayed");
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.userNameVisibility()));
-		loginPOM.sendUserName("chetna");
-		loginPOM.sendPassword("hello@4321");
+		loginPOM.sendUserName("admin");
+		loginPOM.sendPassword("admin@123");
 		screenShot.captureScreenShot("Entering Credentials");
 		loginPOM.clickLoginBtn(); 
-		wait.until(ExpectedConditions.visibilityOf(loginPOM.myProfileClass())); 
+		//wait.until(ExpectedConditions.visibilityOf(loginPOM.myProfileClass())); 
 		screenShot.captureScreenShot("Profile Screen displayed");
-		sendPOM.apartmentTab();
-		screenShot.captureScreenShot("Mouse hover on Apartment Option");
-		sendPOM.apartmentTaboptions();
-		screenShot.captureScreenShot("All Apartment Tab options are present");
-		sendPOM.donecQuisSearching();
-		screenShot.captureScreenShot("DoneC Quis is present");
-		sendPOM.donecQuisSelect();
-		sendPOM.donecQuisOverviewTest();
-		calculatePOM.salesPriceCalculate("400000");
-		calculatePOM.donwPaymenetCalculate("20000");
-		screenShot.captureScreenShot("Fill up the details for sales price and down payment");
-		calculatePOM.loanTermClass("20");
-		screenShot.captureScreenShot("Fill up the details");
-		calculatePOM.interestRateCalulator("7.25");
-		screenShot.captureScreenShot("Fill up InterestRate");
-		calculatePOM.calculateBtn();
-		String Expected ="Monthly Payment: 3003.43 Rs.";
-		Robot robot = new Robot(); 
-		Thread.sleep(2000); 
-		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
-		String CB1 = driver.findElement(By.xpath("//div[@class='calc-output-container']/div[contains(text(),'Monthly Payment')]")).getText();
-		Thread.sleep(3000);
-		String Actual = CB1;
-		System.out.println(Actual);
+		wait.until(ExpectedConditions.visibilityOf(addPostPOM.dashboardVisibility())); 
+		addPostPOM.postsLinkClick();
 		Thread.sleep(1000);
-		assertEquals(Actual, Expected);
-		screenShot.captureScreenShot("Actual result");
-		
-	}
+		addPostPOM.categoryLinkClick();
+		Thread.sleep(1000);
+		addPostPOM.categoryNameText("Testing Category1");
+		addPostPOM.slugText("Testing Category slug");
+		addPostPOM.descriptionText("Testing Category slug description");
+		Robot robot = new Robot(); 
+		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+		wait.until(ExpectedConditions.visibilityOf(addPostPOM.addNewCategoryVisibility()));
+		addPostPOM.addNewCategory();
+		addPostPOM.addNewCategoryLinkClass();
+		addPostPOM.postTitleClass("New Title");
+		addPostPOM.editorAreaClass("New Title editor area");
+		addPostPOM.chooseCategoryClass();
+		Thread.sleep(1000);
+		addPostPOM.publishButton();
+		Thread.sleep(7000);
+		String Expected ="Post published. View post";
+		String postPublishedMessage=driver.findElement(By.xpath("//*[@id='message' and @class='updated notice notice-success is-dismissible']/p")).getText();
+		String Actual =  postPublishedMessage;	
+		System.out.println(Actual);
+		Thread.sleep(3000);
+		assertEquals(Actual, Expected);	
+		screenShot.captureScreenShot("Fifth");
+		blogSectionPOM.viewPostLinkClass();
+		Thread.sleep(7000);
+		}
 
-	
-	
-	
-	 
+
+
 } 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
