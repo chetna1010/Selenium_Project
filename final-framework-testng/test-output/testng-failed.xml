@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.training.sanity.tests.RETC_038_BlogTests">
+      <class name="com.training.sanity.tests.RETC_040_BlogSection_ViewPostLink">
         <methods>
-          <include name="setUpBeforeClass"/>
-          <include name="setUp"/>
-          <include name="blogOptionTest"/>
           <include name="tearDown"/>
+          <include name="blogSelctionPostTest"/>
+          <include name="setUp"/>
+          <include name="setUpBeforeClass"/>
         </methods>
-      </class> <!-- com.training.sanity.tests.RETC_038_BlogTests -->
+      </class> <!-- com.training.sanity.tests.RETC_040_BlogSection_ViewPostLink -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

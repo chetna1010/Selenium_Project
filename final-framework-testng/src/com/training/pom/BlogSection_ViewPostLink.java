@@ -24,9 +24,20 @@ public class BlogSection_ViewPostLink {
 	@FindBy(linkText="View post")
 	private WebElement viewPostLink;
 
+	@FindBy(xpath="//*[@class='col-md-8']/div[@class='blog-post single-post']/div[@class='post-content']/a")
+	private WebElement addedPropertyTitle;
+
 	public void viewPostLinkClass() {
+
 		this.viewPostLink.click();
 	}
+
+	public String addedProprtyMessage() {
+
+		return this.addedPropertyTitle.getText();
+	}
+
+
 }
 
 

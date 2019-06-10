@@ -23,7 +23,8 @@ public class AddPost_CreatedCategory {
 
 	@FindBy(xpath="//*[@class='wp-menu-name']")
 	private WebElement dashBoard;
-	@FindBy(xpath="//*[@id=\"menu-posts\"]/a/div[3]")
+	
+	@FindBy(xpath="//*[@id='menu-posts']/a/div[3]")
 	private WebElement postLink; 
 
 	@FindBy(xpath="//li/a[@href='edit-tags.php?taxonomy=category']")
@@ -50,18 +51,49 @@ public class AddPost_CreatedCategory {
 	@FindBy(xpath="//*[@name='post_category[]' and @id='in-category-328']")
 	private WebElement chooseCategory; 
 
-	@FindBy(xpath="//*[@name='publish' and @id='publish']")
+	@FindBy(xpath="//*[@name='publish' and @class='button button-primary button-large']")
 	private WebElement publish; 
 
-	@FindBy(xpath="//li/a[@href='post-new.php']")
+		
+	@FindBy(xpath="//*[@href='http://realestatem1.upskills.in/wp-admin/post-new.php' and @class='page-title-action']")
 	private WebElement addNewCategoryLink; 
 
+	@FindBy(xpath="//*[@id='message' and @class='updated notice notice-success is-dismissible']/p")
+	private WebElement postPublishMessage; 
+
+
+	//@FindBy(xpath="//*[@id='submitdiv' and @class='postbox closed']/button/span[2]")
+	//private WebElement publishArrowButton; 
+	
+	@FindBy(xpath="//*[@id='adminmenuwrap' ]/ul/li[3][@id='menu-posts']/a[@class='wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-icon-post open-if-no-js menu-top-first']/div[3][@class='wp-menu-name']")
+	private WebElement postLinkSelect; 
+	
+	
+	
+
+	public WebElement postsLinkSelectVisibility() {
+		return this.postLinkSelect;
+	}
+
+	public void postsLinkSelectClass() throws InterruptedException
+	{	
+		Actions builder = new Actions(driver);
+		builder.moveToElement(postLinkSelect).click().perform();
+		//Thread.sleep(2000);
+
+
+	}
+	
+	
+	public WebElement postsLinkClickVisibility() {
+		return this.postLink;
+	}
 
 	public void postsLinkClick() throws InterruptedException
 	{	
 		Actions builder = new Actions(driver);
 		builder.moveToElement(postLink).build().perform();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 
 
 	}
@@ -74,6 +106,10 @@ public class AddPost_CreatedCategory {
 
 	}
 
+	public WebElement categoryNameTextVisibility() {
+		return this.categoryName;
+	}
+	
 	public void categoryNameText(String categoryName)
 	{
 		this.categoryName.clear();
@@ -104,13 +140,18 @@ public class AddPost_CreatedCategory {
 		Actions actions = new Actions(driver);
 
 		actions.doubleClick(addNewCategoryButton).click().perform();
-		
+
 	}
 
+	public WebElement addNewCategoryLinkClassVisibility() {
+		return this.addNewCategoryLink;
+	}
 	public void addNewCategoryLinkClass() {
 		this.addNewCategoryLink.click();	
 	}
-
+	
+	
+		
 	public void postTitleClass(String postTitle)
 	{
 		this.postTitle.clear();
@@ -128,11 +169,23 @@ public class AddPost_CreatedCategory {
 		this.chooseCategory.click();	
 	}
 
+	public WebElement chooseCategoryClassVisibility() {
+		return this.chooseCategory;
+	}
+
 	public void publishButton() {
 		Actions actions = new Actions(driver);
 
 		actions.doubleClick(publish).perform();
 	}
+	public WebElement publishButtonVisibility() {
+		return this.publish;
+	}
+
+	public String postPublishMessageClass() {
+		return this.postPublishMessage.getText();	
+	}
+
 }
 
 

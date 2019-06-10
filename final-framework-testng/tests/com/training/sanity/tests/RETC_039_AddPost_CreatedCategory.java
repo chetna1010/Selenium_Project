@@ -64,43 +64,82 @@ public class RETC_039_AddPost_CreatedCategory {
 	@Test
 	public void addPostTest() throws AWTException, InterruptedException {
 		wait = new WebDriverWait(driver, 120);
-		wait.until(ExpectedConditions.visibilityOf(loginPOM.loginRegisterVisibility())); // launch the Application
+		wait.until(ExpectedConditions.visibilityOf(loginPOM.loginRegisterVisibility())); 
+		// linkselect() method will select the Log IN/Register Link 
 		loginPOM.linkSelect();
 		screenShot.captureScreenShot("Log In Screen displayed");
+		
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.userNameVisibility()));
+		//sendUserName() method will pass the use name in text box
 		loginPOM.sendUserName("admin");
+		
+		//sendPassword() method will pass the password in text box
 		loginPOM.sendPassword("admin@123");
 		screenShot.captureScreenShot("Entering Credentials");
+		
+		//clickLoginBtn() method will click on SIGN IN button
 		loginPOM.clickLoginBtn(); 
 		 
 		screenShot.captureScreenShot("Profile Screen displayed");
 		wait.until(ExpectedConditions.visibilityOf(addPostPOM.dashboardVisibility())); 
+		//postsLinkClick() method will select the POST Link
+		wait.until(ExpectedConditions.visibilityOf(addPostPOM.postsLinkClickVisibility())); 
 		addPostPOM.postsLinkClick();
 		Thread.sleep(1000);
+		screenShot.captureScreenShot("POST Link Selected");
+		//categoryLinkClick() method will select the CATEGORY Link
 		addPostPOM.categoryLinkClick();
-		Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOf(addPostPOM.categoryNameTextVisibility())); 
+		
+		//categoryNameText() method will pass the Category Name in text box field
 		addPostPOM.categoryNameText("Testing Category1");
+		
+		//slugText() method will pass the SLUG Name in text box field
 		addPostPOM.slugText("Testing Category slug");
+		screenShot.captureScreenShot("Fill up the Name and Slug");
+		//descriptionText() method will pass the DESCRIPTON in text box field	slugText
 		addPostPOM.descriptionText("Testing Category slug description");
 		Robot robot = new Robot(); 
 		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+		screenShot.captureScreenShot("Fill up the description");
 		wait.until(ExpectedConditions.visibilityOf(addPostPOM.addNewCategoryVisibility()));
+		
+		//addNewCategory() method will click on the ADD New Category Button
 		addPostPOM.addNewCategory();
+		wait.until(ExpectedConditions.visibilityOf(addPostPOM.postsLinkSelectVisibility())); 
+
+		addPostPOM.postsLinkSelectClass();
+		wait.until(ExpectedConditions.visibilityOf(addPostPOM.addNewCategoryLinkClassVisibility())); 
+
+		//addNewCategoryLinkClass() method will click on the Add New Post page 
 		addPostPOM.addNewCategoryLinkClass();
+		
+		//postTitleClass() method will pass the TITTLE name 
 		addPostPOM.postTitleClass("New Title");
+		
+		//editorAreaClass() method will pass the text into EDITOR area
 		addPostPOM.editorAreaClass("New Title editor area");
+		screenShot.captureScreenShot("Fill up the Title details");
+		//chooseCategoryClass() method will Click on Checkbox beside created category name of category section 
+		
+		wait.until(ExpectedConditions.visibilityOf(addPostPOM.chooseCategoryClassVisibility()));
 		addPostPOM.chooseCategoryClass();
-		Thread.sleep(1000);
+	
+		wait.until(ExpectedConditions.visibilityOf(addPostPOM.publishButtonVisibility())); 
+		
+		//publishButton() method will PUBLISH the ADD
 		addPostPOM.publishButton();
 		Thread.sleep(7000);
+		screenShot.captureScreenShot("POST Published");
+		// Adding Assertion to valdiate wheather Post published. View post message displayed or not
 		String Expected ="Post published. View post";
-		String postPublishedMessage=driver.findElement(By.xpath("//*[@id='message' and @class='updated notice notice-success is-dismissible']/p")).getText();
-		String Actual =  postPublishedMessage;	
+		
+		String Actual =  addPostPOM.postPublishMessageClass();	
 		System.out.println(Actual);
 		Thread.sleep(3000);
 		
 		assertEquals(Actual, Expected);	
-		screenShot.captureScreenShot("Fifth");
+		
 		}
 
 
