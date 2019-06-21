@@ -4,6 +4,7 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -34,8 +35,10 @@ public class ApartmentTab_CalculateButton {
 	@FindBy(xpath="//*[@class='button calc-button']")
 	private WebElement calculateBtn;
 
-	
-		public void salesPriceCalculate(String salesPrice) {
+	@FindBy(xpath="//div[@class='calc-output-container']/div[contains(text(),'Monthly Payment')]")
+	private WebElement monthlyPaymentMsg;
+
+	public void salesPriceCalculate(String salesPrice) {
 		this.salesPrice.clear();
 		this.salesPrice.sendKeys(salesPrice);           
 	}
@@ -55,8 +58,25 @@ public class ApartmentTab_CalculateButton {
 		this.interestRate.sendKeys(interestRate);
 	}
 
-	public void calculateBtn() {
+	public void calculateBtn() throws InterruptedException {
 		this.calculateBtn.click();
+		Thread.sleep(3000); 
+	}
+	public String monthlyPaymentMsgTest() {
+		return this.monthlyPaymentMsg.getText();	
+	}
+
+	public String loanReturn()
+	{
+		/*JavascriptExecutor jse = (JavascriptExecutor)driver;
+		return jse.executeScript("return document.getElementById('years').innerText").toString();*/
+		
+	//return	this.loanTerm.getText();
+		Actions action= new Actions(driver);
+		action.moveToElement(loanTerm).build().perform();
+		return this.loanTerm.getText();
+		
+		
 	}
 
 

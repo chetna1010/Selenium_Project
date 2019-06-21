@@ -71,14 +71,20 @@ public class RETC_037_PlotsTests {
 	@Test
 	public void plotsOptionTest() throws AWTException, InterruptedException {
 		wait = new WebDriverWait(driver, 120);
-		wait.until(ExpectedConditions.visibilityOf(loginPOM.loginRegisterVisibility())); // launch the Application
-		loginPOM.linkSelect();
+		wait.until(ExpectedConditions.visibilityOf(loginPOM.loginRegisterVisibility())); 
+ 
+		loginPOM.linkSelect();		// linkselect() method will select the Log IN/Register Link
 		screenShot.captureScreenShot("Log In Screen displayed");
+		
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.userNameVisibility()));
-		loginPOM.sendUserName("chetna");
-		loginPOM.sendPassword("hello@4321");
-		screenShot.captureScreenShot("Entering Credentials");
-		loginPOM.clickLoginBtn(); 
+	
+		loginPOM.sendUserName("chetna");	//sendUserName() method will pass the use name in text box
+
+		loginPOM.sendPassword("hello@4321");//sendPassword() method will pass the password in text box
+		screenShot.captureScreenShot("Entering Credentials");	
+		
+		loginPOM.clickLoginBtn(); //clickLoginBtn() method will click on SIGN IN button
+	
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.myProfileClass())); 
 		screenShot.captureScreenShot("Profile Screen displayed");
 		plotsPOM.plotsSelectTab();

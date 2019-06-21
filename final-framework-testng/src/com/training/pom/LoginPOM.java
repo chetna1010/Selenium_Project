@@ -42,6 +42,9 @@ public class LoginPOM {
 	@FindBy(xpath="//div[@class='col-md-12']/h2")
 	private WebElement myProfileTitle;
 	
+	@FindBy(linkText="Log In")
+	private WebElement logInPage;
+	
 	
 	public void linkSelect() {
 		this.link.click();	
@@ -77,6 +80,13 @@ public class LoginPOM {
 	public WebElement loginRegisterVisibility() {
 		return this.link;
 	}
+
+	public String myProfileMessageTest() {
+		return this.myProfileTitle.getText();	
+	}
 	
+	public String logInPageMessageTest() {
+		return this.logInPage.getText();	
+	}
 }
 

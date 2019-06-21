@@ -62,14 +62,20 @@ public class RETC_009_ApartmentTab_SearchButton {
 	@Test
 	public void apartmentSearchButtonTest() throws AWTException, InterruptedException {	
 		wait = new WebDriverWait(driver, 120);
-		wait.until(ExpectedConditions.visibilityOf(loginPOM.loginRegisterVisibility())); // launch the Application
-		loginPOM.linkSelect();
+		wait.until(ExpectedConditions.visibilityOf(loginPOM.loginRegisterVisibility())); 
+ 
+		loginPOM.linkSelect();		// linkselect() method will select the Log IN/Register Link
 		screenShot.captureScreenShot("Log In Screen displayed");
+		
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.userNameVisibility()));
-		loginPOM.sendUserName("chetna");
-		loginPOM.sendPassword("hello@4321");
+	
+		loginPOM.sendUserName("chetna");	//sendUserName() method will pass the use name in text box
+
+		loginPOM.sendPassword("hello@4321");//sendPassword() method will pass the password in text box
 		screenShot.captureScreenShot("Entering Credentials");
-		loginPOM.clickLoginBtn(); 
+			
+		loginPOM.clickLoginBtn(); //clickLoginBtn() method will click on SIGN IN button
+	
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.myProfileClass())); 
 		screenShot.captureScreenShot("Profile Screen displayed");
 		searchPOM.apartmentSelectTab();
@@ -89,9 +95,9 @@ public class RETC_009_ApartmentTab_SearchButton {
 		searchPOM.SearchButtonClick();
 		Thread.sleep(2000);
 		screenShot.captureScreenShot("Nothing Found");
-		String result=driver.findElement(By.xpath("//*[@class='no-results not-found']/header[@class='page-header']/h1[@class='page-title']")).getText();
+		
 		String Expected1 ="Records are Matching";
-		String Actual1 =  result;		
+		String Actual1 =  searchPOM.afterMessageTest();		
 		assertEquals(Actual1, Expected1);	
 		
 	}

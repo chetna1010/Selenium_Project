@@ -65,14 +65,20 @@ public class RETC_036_VillasTest {
 	@Test
 	public void villaOptionTest() throws AWTException, InterruptedException {
 		wait = new WebDriverWait(driver, 120);
-		wait.until(ExpectedConditions.visibilityOf(loginPOM.loginRegisterVisibility())); // launch the Application
-		loginPOM.linkSelect();
+		wait.until(ExpectedConditions.visibilityOf(loginPOM.loginRegisterVisibility())); 
+ 
+		loginPOM.linkSelect();		// linkselect() method will select the Log IN/Register Link
 		screenShot.captureScreenShot("Log In Screen displayed");
+		
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.userNameVisibility()));
-		loginPOM.sendUserName("chetna");
-		loginPOM.sendPassword("hello@4321");
+	
+		loginPOM.sendUserName("chetna");	//sendUserName() method will pass the use name in text box
+
+		loginPOM.sendPassword("hello@4321");//sendPassword() method will pass the password in text box
 		screenShot.captureScreenShot("Entering Credentials");
-		loginPOM.clickLoginBtn(); 
+		
+		loginPOM.clickLoginBtn(); //clickLoginBtn() method will click on SIGN IN button
+	
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.myProfileClass())); 
 		screenShot.captureScreenShot("Profile Screen displayed");
 		villasPOM.villasSelectTab();
@@ -86,7 +92,7 @@ public class RETC_036_VillasTest {
 		ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
 		driver.switchTo().window(tabs.get(1));
 		JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-		jse1.executeScript("window.scrollBy(0,7500)");
+		jse1.executeScript("window.scrollBy(0, document.body.scrollHeight)");
 		screenShot.captureScreenShot("select contact button");
 		contactPOM.contactUsButtonSelect();
 		contactPOM.yourNameTextBOx("selenium");

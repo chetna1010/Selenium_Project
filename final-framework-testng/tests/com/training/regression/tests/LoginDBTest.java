@@ -60,7 +60,7 @@ public class LoginDBTest {
 //		genericMethods.getElement("login", "id"); 
 				
 		loginPOM.sendUserName(userName);
-		
+		//String userName= 
 		loginPOM.sendPassword(password);
 		loginPOM.clickLoginBtn();
 		

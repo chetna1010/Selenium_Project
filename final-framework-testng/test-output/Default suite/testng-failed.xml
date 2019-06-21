@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.training.sanity.tests.RETC_040_BlogSection_ViewPostLink">
+      <class name="com.training.sanity.tests.AdminProperty_HomeScreen_RETC_070">
         <methods>
-          <include name="tearDown"/>
-          <include name="blogSelctionPostTest"/>
-          <include name="setUp"/>
           <include name="setUpBeforeClass"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="addPropertyTest" invocation-numbers="0"/>
         </methods>
-      </class> <!-- com.training.sanity.tests.RETC_040_BlogSection_ViewPostLink -->
+      </class> <!-- com.training.sanity.tests.AdminProperty_HomeScreen_RETC_070 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

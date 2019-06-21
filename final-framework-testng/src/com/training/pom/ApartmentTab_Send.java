@@ -21,6 +21,7 @@ public class ApartmentTab_Send {
 	@FindBy(xpath="//a[@href='http://realestatem1.upskills.in/region/apartments-in-bangalore/']")
 	private WebElement apartment; 
 
+	
 	@FindBy(xpath="//a[@class='wpmm-pagination-next']")
 	private WebElement navigation; 
 
@@ -36,6 +37,8 @@ public class ApartmentTab_Send {
 	@FindBy(xpath="//textarea[@name='your-message' and @class='wpcf7-form-control wpcf7-textarea']")
 	private WebElement yourMessage; 
 
+	@FindBy(xpath="//*[@class='wpcf7-response-output wpcf7-display-none wpcf7-mail-sent-ng']")
+	private WebElement afterMessage; 
 
 	@FindBy(xpath="//*[@class='wpcf7-form-control wpcf7-submit' and @type='submit']")
 	private WebElement SendloginBtn;
@@ -43,8 +46,13 @@ public class ApartmentTab_Send {
 	@FindBy(linkText="Donec quis")
 	private WebElement donecQuis;
 
+	@FindBy(xpath="//*[@title='Prestige' and @href='http://realestatem1.upskills.in/prestige-12/']")
+	private WebElement prestige;
 
-
+	
+	public String afterMessageTest() {
+		return this.afterMessage.getText();	
+	}
 	public void apartmentTab() throws InterruptedException 
 	{
 		Actions builder = new Actions(driver);
@@ -79,6 +87,12 @@ public class ApartmentTab_Send {
 		this.donecQuis.click();
 	}
 
+	public void PrestigeSelect() throws  InterruptedException 
+	{
+		Thread.sleep(2000);
+		this.prestige.click();
+	}
+	
 	public void donecQuisOverviewTest() throws AWTException, InterruptedException 
 	{
 		Robot robot = new Robot(); 

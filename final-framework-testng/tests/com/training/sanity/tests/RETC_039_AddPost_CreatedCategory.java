@@ -28,7 +28,7 @@ public class RETC_039_AddPost_CreatedCategory {
 
 
 	private WebDriver driver;
-	private String baseUrl;
+	private String adminUrl;
 	private AddPost_CreatedCategory addPostPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
@@ -49,10 +49,10 @@ public class RETC_039_AddPost_CreatedCategory {
 		loginPOM = new LoginPOM(driver); 
 		addPostPOM = new AddPost_CreatedCategory(driver); 
 		
-		baseUrl = properties.getProperty("baseURL");
+		adminUrl = properties.getProperty("adminUrl");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
-		driver.get(baseUrl);
+		driver.get(adminUrl);
 	}
 
 	@AfterMethod
@@ -65,21 +65,19 @@ public class RETC_039_AddPost_CreatedCategory {
 	public void addPostTest() throws AWTException, InterruptedException {
 		wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.loginRegisterVisibility())); 
-		// linkselect() method will select the Log IN/Register Link 
-		loginPOM.linkSelect();
+ 
+		loginPOM.linkSelect();		// linkselect() method will select the Log IN/Register Link
 		screenShot.captureScreenShot("Log In Screen displayed");
 		
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.userNameVisibility()));
-		//sendUserName() method will pass the use name in text box
-		loginPOM.sendUserName("admin");
-		
-		//sendPassword() method will pass the password in text box
-		loginPOM.sendPassword("admin@123");
+	
+		loginPOM.sendUserName("admin");	//sendUserName() method will pass the use name in text box
+			
+		loginPOM.sendPassword("admin@123");//sendPassword() method will pass the password in text box
 		screenShot.captureScreenShot("Entering Credentials");
-		
-		//clickLoginBtn() method will click on SIGN IN button
-		loginPOM.clickLoginBtn(); 
-		 
+			
+		loginPOM.clickLoginBtn(); //clickLoginBtn() method will click on SIGN IN button
+	
 		screenShot.captureScreenShot("Profile Screen displayed");
 		wait.until(ExpectedConditions.visibilityOf(addPostPOM.dashboardVisibility())); 
 		//postsLinkClick() method will select the POST Link

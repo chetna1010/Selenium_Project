@@ -27,7 +27,7 @@ import com.training.utility.DriverNames;
 public class RETC_040_BlogSection_ViewPostLink {
 
 	private WebDriver driver;
-	private String baseUrl;
+	private String adminUrl;
 	private AddPost_CreatedCategory addPostPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
@@ -48,10 +48,10 @@ public class RETC_040_BlogSection_ViewPostLink {
 		loginPOM = new LoginPOM(driver); 
 		addPostPOM = new AddPost_CreatedCategory(driver); 
 		blogSectionPOM = new BlogSection_ViewPostLink(driver); 
-		baseUrl = properties.getProperty("baseURL");
+		adminUrl = properties.getProperty("adminUrl");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
-		driver.get(baseUrl);
+		driver.get(adminUrl);
 	}
 
 	@AfterMethod
@@ -64,21 +64,19 @@ public class RETC_040_BlogSection_ViewPostLink {
 	public void blogSelctionPostTest() throws AWTException, InterruptedException {
 		wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.loginRegisterVisibility())); 
-		// linkselect() method will select the Log IN/Register Link 
-		loginPOM.linkSelect();
+
+		loginPOM.linkSelect();		// linkselect() method will select the Log IN/Register Link
 		screenShot.captureScreenShot("Log In Screen displayed");
-		
+
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.userNameVisibility()));
-		//sendUserName() method will pass the use name in text box
-		loginPOM.sendUserName("admin");
-		
-		//sendPassword() method will pass the password in text box
-		loginPOM.sendPassword("admin@123");
+
+		loginPOM.sendUserName("admin");	//sendUserName() method will pass the use name in text box
+
+		loginPOM.sendPassword("admin@123");//sendPassword() method will pass the password in text box
 		screenShot.captureScreenShot("Entering Credentials");
-		
-		//clickLoginBtn() method will click on SIGN IN button
-		loginPOM.clickLoginBtn(); 
-		 
+
+		loginPOM.clickLoginBtn(); //clickLoginBtn() method will click on SIGN IN button
+
 		screenShot.captureScreenShot("Profile Screen displayed");
 		wait.until(ExpectedConditions.visibilityOf(addPostPOM.dashboardVisibility())); 
 		//postsLinkClick() method will select the POST Link
@@ -89,10 +87,10 @@ public class RETC_040_BlogSection_ViewPostLink {
 		//categoryLinkClick() method will select the CATEGORY Link
 		addPostPOM.categoryLinkClick();
 		wait.until(ExpectedConditions.visibilityOf(addPostPOM.categoryNameTextVisibility())); 
-		
+
 		//categoryNameText() method will pass the Category Name in text box field
 		addPostPOM.categoryNameText("Testing Category1");
-		
+
 		//slugText() method will pass the SLUG Name in text box field
 		addPostPOM.slugText("Testing Category slug");
 		screenShot.captureScreenShot("Fill up the Name and Slug");
@@ -102,7 +100,7 @@ public class RETC_040_BlogSection_ViewPostLink {
 		robot.keyPress(KeyEvent.VK_PAGE_DOWN);
 		screenShot.captureScreenShot("Fill up the description");
 		wait.until(ExpectedConditions.visibilityOf(addPostPOM.addNewCategoryVisibility()));
-		
+
 		//addNewCategory() method will click on the ADD New Category Button
 		addPostPOM.addNewCategory();
 		wait.until(ExpectedConditions.visibilityOf(addPostPOM.postsLinkSelectVisibility())); 
@@ -112,20 +110,20 @@ public class RETC_040_BlogSection_ViewPostLink {
 
 		//addNewCategoryLinkClass() method will click on the Add New Post page 
 		addPostPOM.addNewCategoryLinkClass();
-		
+
 		//postTitleClass() method will pass the TITTLE name 
 		addPostPOM.postTitleClass("New Title");
-		
+
 		//editorAreaClass() method will pass the text into EDITOR area
 		addPostPOM.editorAreaClass("New Title editor area");
 		screenShot.captureScreenShot("Fill up the Title details");
 		//chooseCategoryClass() method will Click on Checkbox beside created category name of category section 
-		
+
 		wait.until(ExpectedConditions.visibilityOf(addPostPOM.chooseCategoryClassVisibility()));
 		addPostPOM.chooseCategoryClass();
-		
+
 		wait.until(ExpectedConditions.visibilityOf(addPostPOM.publishButtonVisibility())); 
-		
+
 		//publishButton() method will PUBLISH the ADD
 		addPostPOM.publishButton();
 		Thread.sleep(7000);

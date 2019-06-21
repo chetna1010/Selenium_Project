@@ -1,70 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="92306" started-at="2019-06-10T05:18:58Z" finished-at="2019-06-10T05:20:30Z">
+  <suite name="Default suite" duration-ms="78885" started-at="2019-06-21T07:30:55Z" finished-at="2019-06-21T07:32:14Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="92306" started-at="2019-06-10T05:18:58Z" finished-at="2019-06-10T05:20:30Z">
-      <class name="com.training.sanity.tests.RETC_040_BlogSection_ViewPostLink">
-        <test-method status="PASS" signature="setUpBeforeClass()[pri:0, instance:com.training.sanity.tests.RETC_040_BlogSection_ViewPostLink@47c62251]" name="setUpBeforeClass" is-config="true" duration-ms="25" started-at="2019-06-10T05:18:58Z" finished-at="2019-06-10T05:18:58Z">
+    <test name="Default test" duration-ms="78885" started-at="2019-06-21T07:30:55Z" finished-at="2019-06-21T07:32:14Z">
+      <class name="com.training.sanity.tests.InvalidDeatilsToCalculateMortgage_RETC_069">
+        <test-method status="PASS" signature="setUpBeforeClass()[pri:0, instance:com.training.sanity.tests.InvalidDeatilsToCalculateMortgage_RETC_069@3e6fa38a]" name="setUpBeforeClass" is-config="true" duration-ms="17" started-at="2019-06-21T07:30:55Z" finished-at="2019-06-21T07:30:55Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpBeforeClass -->
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.training.sanity.tests.RETC_040_BlogSection_ViewPostLink@47c62251]" name="setUp" is-config="true" duration-ms="40482" started-at="2019-06-10T05:18:58Z" finished-at="2019-06-10T05:19:39Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.training.sanity.tests.InvalidDeatilsToCalculateMortgage_RETC_069@3e6fa38a]" name="setUp" is-config="true" duration-ms="15483" started-at="2019-06-21T07:30:55Z" finished-at="2019-06-21T07:31:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="FAIL" signature="blogSelctionPostTest()[pri:0, instance:com.training.sanity.tests.RETC_040_BlogSection_ViewPostLink@47c62251]" name="blogSelctionPostTest" duration-ms="50013" started-at="2019-06-10T05:19:39Z" finished-at="2019-06-10T05:20:29Z">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected [New Title for Real State] but found [New Title]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [New Title for Real State] but found [New Title]
-at org.testng.Assert.fail(Assert.java:96)
-at org.testng.Assert.failNotEquals(Assert.java:776)
-at org.testng.Assert.assertEqualsImpl(Assert.java:137)
-at org.testng.Assert.assertEquals(Assert.java:118)
-at org.testng.Assert.assertEquals(Assert.java:453)
-at org.testng.Assert.assertEquals(Assert.java:463)
-at com.training.sanity.tests.RETC_040_BlogSection_ViewPostLink.blogSelctionPostTest(RETC_040_BlogSection_ViewPostLink.java:153)
-at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-at java.lang.reflect.Method.invoke(Unknown Source)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
-at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
-at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
-at org.testng.TestRunner.privateRun(TestRunner.java:648)
-at org.testng.TestRunner.run(TestRunner.java:505)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
-at org.testng.SuiteRunner.run(SuiteRunner.java:364)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
-at org.testng.TestNG.runSuites(TestNG.java:1049)
-at org.testng.TestNG.run(TestNG.java:1017)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        <test-method status="PASS" signature="calculateMortgageforInvalidValuesClass(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.training.sanity.tests.InvalidDeatilsToCalculateMortgage_RETC_069@3e6fa38a]" name="calculateMortgageforInvalidValuesClass" duration-ms="22041" started-at="2019-06-21T07:31:11Z" data-provider="excel-inputs2" finished-at="2019-06-21T07:31:33Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[500000.0]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- blogSelctionPostTest -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.training.sanity.tests.RETC_040_BlogSection_ViewPostLink@47c62251]" name="tearDown" is-config="true" duration-ms="1755" started-at="2019-06-10T05:20:29Z" finished-at="2019-06-10T05:20:30Z">
+        </test-method> <!-- calculateMortgageforInvalidValuesClass -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.training.sanity.tests.InvalidDeatilsToCalculateMortgage_RETC_069@3e6fa38a]" name="tearDown" is-config="true" duration-ms="1797" started-at="2019-06-21T07:31:33Z" finished-at="2019-06-21T07:31:35Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.training.sanity.tests.RETC_040_BlogSection_ViewPostLink -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.training.sanity.tests.InvalidDeatilsToCalculateMortgage_RETC_069@3e6fa38a]" name="setUp" is-config="true" duration-ms="15313" started-at="2019-06-21T07:31:35Z" finished-at="2019-06-21T07:31:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="calculateMortgageforInvalidValuesClass(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.training.sanity.tests.InvalidDeatilsToCalculateMortgage_RETC_069@3e6fa38a]" name="calculateMortgageforInvalidValuesClass" duration-ms="21909" started-at="2019-06-21T07:31:50Z" data-provider="excel-inputs2" finished-at="2019-06-21T07:32:12Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[8900.0]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[900.0]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[9.0]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- calculateMortgageforInvalidValuesClass -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.training.sanity.tests.InvalidDeatilsToCalculateMortgage_RETC_069@3e6fa38a]" name="tearDown" is-config="true" duration-ms="1802" started-at="2019-06-21T07:32:12Z" finished-at="2019-06-21T07:32:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.training.sanity.tests.InvalidDeatilsToCalculateMortgage_RETC_069 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

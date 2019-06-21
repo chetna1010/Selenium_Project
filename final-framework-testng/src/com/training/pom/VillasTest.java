@@ -29,12 +29,17 @@ public class VillasTest {
 	@FindBy(xpath="//a[@class='asl_res_url' and @href='http://realestatem1.upskills.in/nullam-hendrerit-apartments/']")
 	private WebElement iconClick; 
 	
+	
 	public void villasSelectTab()
 	{	Actions builder = new Actions(driver);
 	builder.moveToElement(villas).click().perform();
 	
 	}
 	
+	
+	public WebElement searchBoxVisibility() {
+		return this.searchIcon;
+	}
 	public void searchValueClass(String searchIcon)
 	{
 		this.searchIcon.clear();

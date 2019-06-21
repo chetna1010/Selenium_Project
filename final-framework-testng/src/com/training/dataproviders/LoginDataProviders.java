@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.testng.annotations.DataProvider;
 
+
 import com.training.bean.LoginBean;
 import com.training.dao.ELearningDAO;
 import com.training.readexcel.ApachePOIExcelRead;
 import com.training.readexcel.ReadExcel;
 
 public class LoginDataProviders {
-
+/*
 	@DataProvider(name = "db-inputs")
 	public Object [][] getDBData() {
 
@@ -22,23 +23,24 @@ public class LoginDataProviders {
 			Object[]  obj = new Object[2]; 
 			obj[0] = temp.getUserName(); 
 			obj[1] = temp.getPassword(); 
-			
+			 
 			result[count ++] = obj; 
 		}
 		
 		
 		return result;
-	}
+	}*/
 	
 	@DataProvider(name = "excel-inputs")
 	public Object[][] getExcelData(){
-		String fileName ="C:/Users/Naveen/Desktop/Testing.xlsx"; 
-		return new ApachePOIExcelRead().getExcelContent(fileName); 
+		String fileName ="C:\\Users\\ChetnaGupta\\Documents\\Project\\Selenium Project Documents\\EnquiryFormData.xlsx"; 
+		String sheetName="Sheet1";
+		return new ApachePOIExcelRead().getExcelContent(fileName,sheetName); 
 	}
 	
 	@DataProvider(name = "xls-inputs")
 	public Object[][] getXLSData(){
 		// ensure you will have the title as first line in the file 
-		return new ReadExcel().getExcelData("C:/Users/Naveen/Desktop/Testing.xls", "Sheet1"); 
+		return new ReadExcel().getExcelData("C:\\Users\\ChetnaGupta\\Documents\\Project\\Selenium Project Documents\\EnquiryFormData.xlsx", "Sheet1"); 
 	}
 }

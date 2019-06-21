@@ -45,6 +45,12 @@ public class ApartmentTab_SearchButton {
 	@FindBy(xpath="//*[@class='button fullwidth']")
 	private WebElement searchButton;
 
+	@FindBy(xpath="//*[@class='no-results not-found']/header[@class='page-header']/h1[@class='page-title']")
+	private WebElement message;
+	
+	public String afterMessageTest() {
+		return this.message.getText();	
+	}
 	
 	public void your_Address(String youraddress) {
 

@@ -61,23 +61,29 @@ public class RETC_010_ContactUsForm {
 		Thread.sleep(1000);
 		driver.quit();
 	}
-	
+
 	@Test
 	public void contactUsFormTest() throws AWTException, InterruptedException {
-		
+
 		wait = new WebDriverWait(driver, 120);
-		wait.until(ExpectedConditions.visibilityOf(loginPOM.loginRegisterVisibility())); // launch the Application
-		loginPOM.linkSelect();
+		wait.until(ExpectedConditions.visibilityOf(loginPOM.loginRegisterVisibility())); 
+
+		loginPOM.linkSelect();		// linkselect() method will select the Log IN/Register Link
 		screenShot.captureScreenShot("Log In Screen displayed");
+
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.userNameVisibility()));
-		loginPOM.sendUserName("chetna");
-		loginPOM.sendPassword("hello@4321");
+
+		loginPOM.sendUserName("chetna");	//sendUserName() method will pass the use name in text box
+
+		loginPOM.sendPassword("hello@4321");//sendPassword() method will pass the password in text box
 		screenShot.captureScreenShot("Entering Credentials");
-		loginPOM.clickLoginBtn(); 
+
+		loginPOM.clickLoginBtn(); //clickLoginBtn() method will click on SIGN IN button
+
 		wait.until(ExpectedConditions.visibilityOf(loginPOM.myProfileClass())); 
 		screenShot.captureScreenShot("Profile Screen displayed");
 		JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-		 
+
 		jse1.executeScript("window.scrollBy(0,2000)");
 		screenShot.captureScreenShot("Bottom of the page");
 		Thread.sleep(5000);
@@ -101,9 +107,9 @@ public class RETC_010_ContactUsForm {
 		assertEquals(Actual, Expected);	
 		screenShot.captureScreenShot("Fifth");
 	}
-	
-	
-	 
+
+
+
 } 
 
 
